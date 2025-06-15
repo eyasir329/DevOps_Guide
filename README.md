@@ -22,6 +22,24 @@ This repository contains notes and references from the **Udemy course**
 ---
 
 ## 📚 Course-Aligned Categories
+---
+prereq:
+- https://github.com/devopshydclub/vprofile-project/blob/prereqs/Prereqs_doc.md
+
+### Some Tools
+
+- Oracle vm virtualbox
+- git bash
+- Vagrant is a command-line utility for managing as well as creating Virtual machines on a system. Vagrant automates the setup process of creating the Virtual machine on Virtualization tools like VirtualBox. It saves time and reduces headaches by making it easy to manage the environment for developing and testing your software.
+- chocolatey/brew/command line
+
+### Sign up
+
+- github
+- domain purchase
+- dockerhub
+- sonarcloud
+---
 
 ### 1. 🧩 [Version Control - Git](/1_GIT/)
 
@@ -49,7 +67,7 @@ This repository contains notes and references from the **Udemy course**
 
 ---
 
-### 5. 🖥️ Server Management
+### 5. 🖥️ [Server Management](./5_Learn%20Server%20Management/)
 
 * Vagrant & Linux servers
 * VProfile Project (Manual & Automated deployment)
@@ -77,7 +95,7 @@ This repository contains notes and references from the **Udemy course**
 
 ---
 
-### 9. 🔁 Continuous Integration & Deployment (CI/CD)
+### 9. 🔁 [Continuous Integration & Deployment (CI/CD)](./9_Learn%20CI_CD/)
 
 * Jenkins (CI)
 * AWS CI/CD pipeline projects
@@ -96,7 +114,7 @@ This repository contains notes and references from the **Udemy course**
 
 ---
 
-### 11. ☁️ Cloud Provider - AWS
+### 11. ☁️ [Cloud Provider - AWS](./11_Learn%20one%20Cloud%20provider/)
 
 * AWS Basics (Part 1 & Part 2)
 * AWS Cloud Project (Lift & Shift architecture)
@@ -104,7 +122,7 @@ This repository contains notes and references from the **Udemy course**
 
 ---
 
-### 12. 🛠️ Software Engineering Practices
+### 12. 🛠️ [Software Engineering Practices](./12_Learn%20Software%20Engineering%20Practices/)
 
 * Variables, JSON & YAML
 * Maven build tool
