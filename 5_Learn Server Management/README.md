@@ -302,6 +302,8 @@ Vagrant is a VM automation tool that:
 - Disabled antivirus (if experiencing issues)
 - Disabled VPN connections
 
+![vagrant arch](./vagrant.png)
+
 ## 3. Setup Process
 
 ### Create Project Structure
@@ -314,7 +316,7 @@ mkdir ~/Desktop/vagrant-vms  # Mac
 cd /f/vagrant-vms
 mkdir centos ubuntu
 ```
-
+![vagrant_steps](./vagrant1.png)
 ### CentOS VM Setup
 1. Find box on [Vagrant Cloud](https://app.vagrantup.com/boxes/search):
    - Search for "centos-stream-9"
@@ -392,6 +394,9 @@ exit
 
 # Check network configuration
 ip addr show
+
+# Check History
+history
 ```
 
 ## 5. Troubleshooting
