@@ -1015,6 +1015,7 @@ ls /nonexistent &> debug.log && mail -s "Log" user@example.com < debug.log
 
 ### **Commands & Operations**
 #### **1. User Management**
+> root user don't need any password
 - **Create User**:  
   ```bash
   useradd ansible  # Creates user with default home dir
@@ -1025,6 +1026,7 @@ ls /nonexistent &> debug.log && mail -s "Log" user@example.com < debug.log
   userdel ansible          # Keeps home dir
   userdel -r jenkins       # Deletes home dir too
   ```
+> but exist in home directory, to delete from home directory also 
 
 #### **2. Group Management**
 - **Create Group**:  
@@ -1053,6 +1055,7 @@ ls /nonexistent &> debug.log && mail -s "Log" user@example.com < debug.log
   ```bash
   su - jenkins
   ```
+> back to root user need to exit each other user
 
 #### **4. Monitoring Users**
 - **Current User**:  
@@ -1137,6 +1140,9 @@ Breakdown:
 | `-`    | No permission  |
 
 ---
+> create directory, # ls -ld /opt/devopsdir
+
+> directory ownership, # chown -R ansible:devops /opt/devopsdir  (-R means do it recursively, be careful with that)
 
 ## 🔧 chmod: Changing Permissions
 
@@ -1146,6 +1152,8 @@ chmod u+x file       # Add execute for user
 chmod g-w file       # Remove write for group
 chmod o=r file       # Set read-only for others
 ```
+> permission change, # chmod o-x /opt/devopsdir (other remove execute permission)
+> chmod g+w /opt/devopsdir (group add write permission)
 
 ### Numeric Method
 ```bash
@@ -1422,6 +1430,9 @@ This avoids breaking the main `/etc/sudoers` file.
 
 ## 📦 Software Management
 
+>  tree /var/log
+> curl http... -o abc
+
 ### 🔧 RPM (Manual)
 
 Install a `.rpm` file:
@@ -1434,7 +1445,7 @@ List installed packages:
 
 ```bash
 rpm -qa
-rpm -qa | grep tree
+rpm -qa | grep tree (rpm -qa pipe grep tree) 
 ```
 
 Uninstall:
@@ -1456,6 +1467,11 @@ Install:
 ```bash
 yum install httpd -y
 ```
+> if failed dependencies to install a rpm package
+
+> rpm -qa (all rpm check)
+
+> cd /etc/yum.repos.d/
 
 Remove:
 
@@ -1523,8 +1539,9 @@ systemctl is-enabled httpd      # Enabled/disabled on boot
 After `yum install httpd`, to persist the service across reboots:
 
 ```bash
-systemctl enable httpd
+systemctl enable httpd (come up at the boot time)
 systemctl start httpd
+systemctl status httpd
 ```
 
 ### 🔗 Service Configuration File Path
