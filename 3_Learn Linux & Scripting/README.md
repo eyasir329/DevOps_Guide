@@ -1,9 +1,41 @@
+# Linux and Scripting for DevOps
+
+A practical, streamlined guide to Linux fundamentals tailored for DevOps work. All original content is preserved and reorganized for clarity.
+
+## Table of Contents
+
+- [Introduction to Linux for DevOps](#introduction-to-linux-for-devops)
+- [Course Content Overview](#course-content-overview)
+- [Why Linux?](#why-linux)
+- [Linux Architecture](#linux-architecture)
+- [Key Linux Principles](#key-linux-principles)
+- [Popular Linux Distributions](#popular-linux-distributions)
+- [RPM vs. Debian](#rpm-vs-debian)
+- [Linux Directory Structure](#linux-directory-structure)
+- [Basic Commands](#basic-commands)
+- [Vim Editor Basics (Transcript Summary)](#vim-editor-basics-transcript-summary)
+- [Everything is a File in Linux](#-everything-is-a-file-in-linux)
+- [Linux Filters and Redirections](#linux-filters-and-redirections)
+- [Input/Output Redirection in Linux](#1-inputoutput-redirection-in-linux)
+- [Linux Users & Groups](#linux-users--groups-core-concepts)
+- [Linux File Permissions & Ownership](#-linux-file-permissions--ownership)
+- [Using sudo and sudoers](#-using-sudo-and-sudoers-in-linux)
+- [Software Management (RPM/Yum/Apt)](#-software-management)
+- [Services Management (systemctl)](#linux-services-management-systemctl)
+- [Process Management](#-linux-process-management-monitoring--control)
+- [Archiving and Compression](#linux-archiving-and-compression)
+- [Ubuntu Basics & Differences vs CentOS](#ubuntu-operating-system-basics--differences-compared-to-centos)
+
+---
+
 ### **Introduction to Linux for DevOps**
+
 - Linux is foundational for DevOps and this course
 - The section is designed for efficiency - learning a lot in a short time
 - Even experienced Linux admins may benefit from reviewing
 
 ### **Course Content Overview**
+
 1. **Linux Basics**: Commands, file operations, directories
 2. **File Systems & Text Editing**: Permissions, editing files
 3. **Filters & Redirection**: Critical for DevOps work
@@ -12,12 +44,14 @@
 6. **Services & Processes**
 7. **Server Management**: Setting up web/database servers
 
->Open Source Software (OSS) refers to software whose source code is publicly available for anyone to view, modify, and distribute.
->>Doesn't open source just mean something is free of charge? - Common Misconception
+> Open Source Software (OSS) refers to software whose source code is publicly available for anyone to view, modify, and distribute.
+>
+> > Doesn't open source just mean something is free of charge? - Common Misconception
 
 ![linux](./linux_history.png)
 
 ### **Why Linux?**
+
 - Open source with strong community support
 - Runs on diverse hardware (phones to supercomputers)
 - Highly customizable
@@ -26,68 +60,78 @@
 - Generally more secure (though debatable)
 
 ### **Linux Architecture**
+
 - Hardware → Kernel → Shell → Commands/Tools → User
 - The kernel (created by Linus Torvalds) is the core component
 
 ![linux_archi](./linux_architecture.jpg)
->Kernel − It is the core component of Operating System, interacts directly with hardware, provides low level services to upper layer components.
 
->Shell − An interface to kernel, hiding complexity of kernel's functions from users. The shell takes commands from the user and executes kernel's functions.
+> Kernel − It is the core component of Operating System, interacts directly with hardware, provides low level services to upper layer components.
+
+> Shell − An interface to kernel, hiding complexity of kernel's functions from users. The shell takes commands from the user and executes kernel's functions.
 
 ### **Key Linux Principles**
+
 1. **Everything is a file** (including hardware devices)
 2. **Small, single-purpose programs** that can be combined
 3. **Avoids captive user interfaces** (prefers non-interactive)
 4. **Configuration via text files** (easy to automate/modify)
 
 ### **Popular Linux Distributions**
+
 - **Desktop**: Ubuntu, Linux Mint, Fedora, Debian
-- **Server**: 
+- **Server**:
   - **RPM-based**: RHEL(Red Hat Enterprise Linux), CentOS, Amazon Linux
   - **Debian-based**: Ubuntu Server
 
 ### **RPM vs. Debian**
-| Feature       | RPM-based (RHEL/CentOS) | Debian-based (Ubuntu) |
-|--------------|------------------------|-----------------------|
-| Package Format | .rpm files           | .deb files            |
-| Install Command | `rpm -ivh`          | `dpkg -i`             |
-| Philosophy   | Stability-focused     | Latest software       |
-| Use Case     | Production servers    | DevOps/experimentation|
+
+| Feature         | RPM-based (RHEL/CentOS) | Debian-based (Ubuntu)  |
+| --------------- | ----------------------- | ---------------------- |
+| Package Format  | .rpm files              | .deb files             |
+| Install Command | `rpm -ivh`              | `dpkg -i`              |
+| Philosophy      | Stability-focused       | Latest software        |
+| Use Case        | Production servers      | DevOps/experimentation |
 
 ### **Linux Directory Structure**
-| Directory      | Purpose |
-|---------------|---------|
-| `/home`       | User home directories |
-| `/root`       | Root user's home |
-| `/bin`, `/usr/bin` | User commands |
-| `/sbin`, `/usr/sbin` | Admin commands |
-| `/etc`        | Configuration files |
-| `/var`       | Server data (websites, databases) |
-| `/tmp`       | Temporary files (may be cleared on reboot) |
-| `/boot`      | Kernel and boot files |
-| `/proc`, `/sys` | System information |
+
+| Directory            | Purpose                                    |
+| -------------------- | ------------------------------------------ |
+| `/home`              | User home directories                      |
+| `/root`              | Root user's home                           |
+| `/bin`, `/usr/bin`   | User commands                              |
+| `/sbin`, `/usr/sbin` | Admin commands                             |
+| `/etc`               | Configuration files                        |
+| `/var`               | Server data (websites, databases)          |
+| `/tmp`               | Temporary files (may be cleared on reboot) |
+| `/boot`              | Kernel and boot files                      |
+| `/proc`, `/sys`      | System information                         |
 
 ---
+
 ### **Basic Commands**
 
 ### 🖥️ **Vagrant VM Setup**
 
-* **Check VM status:**
+- **Check VM status:**
 
   ```bash
   vagrant global-status
   ```
-* **Navigate to the CentOS VM folder:**
+
+- **Navigate to the CentOS VM folder:**
 
   ```bash
   cd /f/vagrant-vm/centos/
   ```
-* **Start the VM:**
+
+- **Start the VM:**
 
   ```bash
   vagrant up
   ```
-* **SSH into the VM:**
+
+- **SSH into the VM:**
 
   ```bash
   vagrant ssh
@@ -97,7 +141,7 @@
 
 ### 🔧 **Basic Linux Commands**
 
-* **Clear screen:**
+- **Clear screen:**
 
   ```bash
   clear
@@ -105,22 +149,25 @@
 
 #### **User Info & Directory**
 
-* **Current user:**
+- **Current user:**
 
   ```bash
   whoami    # e.g., vagrant
   ```
-* **Current working directory:**
+
+- **Current working directory:**
 
   ```bash
   pwd       # e.g., /home/vagrant
   ```
-* **List files in current directory:**
+
+- **List files in current directory:**
 
   ```bash
   ls
   ```
-* **Read file (e.g., OS info):**
+
+- **Read file (e.g., OS info):**
 
   ```bash
   cat /etc/os-release
@@ -130,28 +177,30 @@
 
 ### 👤 **User Prompt Explanation**
 
-* `vagrant@localhost:~$`
+- `vagrant@localhost:~$`
 
-  * `vagrant`: username
-  * `localhost`: hostname
-  * `~`: home directory
-  * `$`: regular user prompt
+  - `vagrant`: username
+  - `localhost`: hostname
+  - `~`: home directory
+  - `$`: regular user prompt
 
 ---
 
 ### 🔐 **Switching to Root User**
 
-* **Use `sudo` to switch to root:**
+- **Use `sudo` to switch to root:**
 
   ```bash
   sudo -i
   ```
-* New prompt:
 
-  * `root@localhost:~#`
+- New prompt:
 
-    * `#` denotes root user shell
-* **Verify:**
+  - `root@localhost:~#`
+
+    - `#` denotes root user shell
+
+- **Verify:**
 
   ```bash
   whoami    # root
@@ -162,7 +211,7 @@
 
 ### 📁 **Important Directories in Linux**
 
-* **Root directory:**
+- **Root directory:**
 
   ```bash
   cd /
@@ -171,19 +220,19 @@
 
   This is the base of the Linux file system.
 
-* **Root user's home directory:**
+- **Root user's home directory:**
 
   ```
   /root
   ```
 
-* **Regular user's home directories:**
+- **Regular user's home directories:**
 
   ```
   /home/username
   ```
 
-* **View all top-level directories:**
+- **View all top-level directories:**
 
   ```bash
   ls /
@@ -207,17 +256,19 @@
 
 ### ⚙️ **Examples of Commands**
 
-* **Check hostname:**
+- **Check hostname:**
 
   ```bash
   cat /etc/hostname
   ```
-* **Check system uptime:**
+
+- **Check system uptime:**
 
   ```bash
   uptime
   ```
-* **Check memory usage:**
+
+- **Check memory usage:**
 
   ```bash
   free -m
@@ -227,50 +278,50 @@
 
 ### 📌 Notes
 
-* **`cd` with no arguments** returns to **user's home directory**.
-* Files in `/proc` like `/proc/uptime` are **dynamically generated** and reflect live system data.
-* **Absolute path** starts with `/` (e.g., `/bin`), whereas relative path does not.
+- **`cd` with no arguments** returns to **user's home directory**.
+- Files in `/proc` like `/proc/uptime` are **dynamically generated** and reflect live system data.
+- **Absolute path** starts with `/` (e.g., `/bin`), whereas relative path does not.
 
 ---
 
 ### 🔐 User Sessions
 
-* `sudo -i` to switch to root user.
-* `exit` to log out of root and vagrant users.
-* `vagrant ssh` to SSH back into the virtual machine.
+- `sudo -i` to switch to root user.
+- `exit` to log out of root and vagrant users.
+- `vagrant ssh` to SSH back into the virtual machine.
 
 ---
 
 ### 📁 Directory Management
 
-* `mkdir dev` creates a directory named `dev`.
-* `mkdir ops backup` creates multiple directories at once.
+- `mkdir dev` creates a directory named `dev`.
+- `mkdir ops backup` creates multiple directories at once.
 
 ---
 
 ### 📄 File Creation
 
-* `touch testfile.txt` creates an empty file.
-* `touch devopsfile{1..10}.txt` creates 10 files: `devopsfile1.txt` to `devopsfile10.txt`.
+- `touch testfile.txt` creates an empty file.
+- `touch devopsfile{1..10}.txt` creates 10 files: `devopsfile1.txt` to `devopsfile10.txt`.
 
 ---
 
 ### 📋 Copying Files
 
-* `cp devopsfile1.txt dev/` uses **relative path**.
-* `cp /home/vagrant/devopsfile2.txt /home/vagrant/dev/` uses **absolute path** (recommended for beginners.. start from root).
-* To copy directories:
+- `cp devopsfile1.txt dev/` uses **relative path**.
+- `cp /home/vagrant/devopsfile2.txt /home/vagrant/dev/` uses **absolute path** (recommended for beginners.. start from root).
+- To copy directories:
 
-  * `cp -r dev backup/`
-  * Without `-r`, it fails (`omitting directory` error).
+  - `cp -r dev backup/`
+  - Without `-r`, it fails (`omitting directory` error).
 
 ---
 
 ### 🧭 Path Basics
 
-* `cd ~` or just `cd` takes you to home directory.
-* Relative path: from your current location.
-* Absolute path: from root `/`.
+- `cd ~` or just `cd` takes you to home directory.
+- Relative path: from your current location.
+- Absolute path: from root `/`.
 
 ---
 
@@ -279,32 +330,32 @@
 Format: `command [options] [arguments]`
 Examples:
 
-* `ls -l /tmp`
-* `cp -r source/ dest/` (copy folder don't work directly, we have to use -r)
-* `cp --help` shows command help with options.
+- `ls -l /tmp`
+- `cp -r source/ dest/` (copy folder don't work directly, we have to use -r)
+- `cp --help` shows command help with options.
 
 ---
 
 ### 🔁 Moving Files and Directories
 
-* `mv devopsfile3.txt ops/` moves a file.
-* `mv ops/ dev/` moves a directory.
-* `mv testfile1.txt testfile22.txt` renames a file.
+- `mv devopsfile3.txt ops/` moves a file.
+- `mv ops/ dev/` moves a directory.
+- `mv testfile1.txt testfile22.txt` renames a file.
 
 ---
 
 ### ✴️ Wildcards & Globs
 
-* `*` means everything in the current directory.
-* `mv *.txt textdir/` moves all `.txt` files to `textdir`.
+- `*` means everything in the current directory.
+- `mv *.txt textdir/` moves all `.txt` files to `textdir`.
 
 ---
 
 ### 🗑️ Deleting Files & Directories
 
-* `rm filename.txt` deletes a file.
-* `rm -r dirname/` deletes a directory.
-* `rm -rf *` deletes **everything** in the current directory:
+- `rm filename.txt` deletes a file.
+- `rm -r dirname/` deletes a directory.
+- `rm -rf *` deletes **everything** in the current directory:
 
   > ⚠️ Very dangerous! No recycle bin or undo.
   > Can irreversibly delete important system files.
@@ -313,8 +364,8 @@ Examples:
 
 ### 🧾 Final Tips
 
-* Use `history` to view all previously run commands.
-* Practice with caution, especially when using `rm`.
+- Use `history` to view all previously run commands.
+- Practice with caution, especially when using `rm`.
 
 ---
 
@@ -322,9 +373,9 @@ Examples:
 
 ### **1. Introduction to Vim**
 
-* `vim` is a text editor used in Linux.
-* It's an enhanced version of `vi`.
-* If `vim` isn't installed on CentOS, install it using:
+- `vim` is a text editor used in Linux.
+- It's an enhanced version of `vi`.
+- If `vim` isn't installed on CentOS, install it using:
 
   ```bash
   sudo yum install vim -y
@@ -332,7 +383,7 @@ Examples:
 
 ### **2. Starting Vim**
 
-* To create or open a file:
+- To create or open a file:
 
   ```bash
   vim filename.txt
@@ -340,67 +391,68 @@ Examples:
 
 ### **3. Vim Modes**
 
-* **Command Mode** (default): For navigation and commands.
-* **Insert Mode**: Press `i` to enter. You can type text here.
-* **Extended Mode**: Press `:` to enter. Used for commands like saving or quitting.
+- **Command Mode** (default): For navigation and commands.
+- **Insert Mode**: Press `i` to enter. You can type text here.
+- **Extended Mode**: Press `:` to enter. Used for commands like saving or quitting.
 
 ### **4. Saving and Quitting**
 
-* Press `ESC` to return to command mode.
-* `:w` → Save file.
-* `:q` → Quit.
-* `:wq` → Save and quit.
-* `:q!` → Force quit without saving.
+- Press `ESC` to return to command mode.
+- `:w` → Save file.
+- `:q` → Quit.
+- `:wq` → Save and quit.
+- `:q!` → Force quit without saving.
 
 ### **5. Editing Text**
 
-* Open the file with `vim filename.txt`
-* Press `i` or `o` to insert text.
-* Type content. 
-* Press `ESC`, then `:wq` to save and exit.
+- Open the file with `vim filename.txt`
+- Press `i` or `o` to insert text.
+- Type content.
+- Press `ESC`, then `:wq` to save and exit.
 
 ### **6. Navigation Shortcuts**
 
-* `:set nu` → Show line numbers.
-* `gg` → Go to the first line.
-* `G` (Shift + g) → Go to the last line.
-* `5w` → Move 5 words forward.
-* `5b` → Move 5 words back.
+- `:set nu` → Show line numbers.
+- `gg` → Go to the first line.
+- `G` (Shift + g) → Go to the last line.
+- `5w` → Move 5 words forward.
+- `5b` → Move 5 words back.
 
 ### **7. Copy, Cut, Paste**
 
-* `yy` → Copy (yank) current line.
-* `4yy` → Copy 4 lines.
-* `p` → Paste below.
-* `P` → Paste above.
-* `dd` → Delete (cut) current line.
-* `5dd` → Delete 5 lines.
-* `u` → Undo last action.
+- `yy` → Copy (yank) current line.
+- `4yy` → Copy 4 lines.
+- `p` → Paste below.
+- `P` → Paste above.
+- `dd` → Delete (cut) current line.
+- `5dd` → Delete 5 lines.
+- `u` → Undo last action.
 
 ### **8. Search in Vim**
 
-* `/word` → Search for `word`.
-* `n` → Jump to next match.
-* `N` → Jump to previous match.
-* Searches are **case sensitive**.
+- `/word` → Search for `word`.
+- `n` → Jump to next match.
+- `N` → Jump to previous match.
+- Searches are **case sensitive**.
 
 ### **9. Practice Tip**
 
-* Practice using Vim commands to get comfortable.
-* Try opening, editing, saving, and quitting files often.
-* Use `vim` on larger files to practice navigation and editing shortcuts.
->os installing info \: `vim anaconda-ks.cfg`
+- Practice using Vim commands to get comfortable.
+- Try opening, editing, saving, and quitting files often.
+- Use `vim` on larger files to practice navigation and editing shortcuts.
+  > os installing info \: `vim anaconda-ks.cfg`
+
 ---
 
 ### 🔹 **Everything is a File in Linux**
 
-* In Linux, **everything is treated as a file**: text files, directories, devices like keyboard/mouse, terminals (`tty`), etc.
+- In Linux, **everything is treated as a file**: text files, directories, devices like keyboard/mouse, terminals (`tty`), etc.
 
 ---
 
 ### 🔹 **Types of Files (based on `ls -l`)**
 
-* Prefix in permissions string indicates file type:
+- Prefix in permissions string indicates file type:
 
   | Symbol | Type              | Description                                            |
   | ------ | ----------------- | ------------------------------------------------------ |
@@ -418,36 +470,36 @@ Examples:
 
 #### `ls -l`
 
-* Long listing: shows type, permissions, owner, size, timestamp, etc.
+- Long listing: shows type, permissions, owner, size, timestamp, etc.
 
 #### `file <filename>`
 
-* Tells if a file is **ASCII text**, **binary**, **script**, etc.
+- Tells if a file is **ASCII text**, **binary**, **script**, etc.
 
 #### `mkdir -p <path>`
 
-* Creates **nested directories** if they don’t already exist.
+- Creates **nested directories** if they don’t already exist.
 
 #### `ln -s <target> <link_name>`
 
-* Creates a **symbolic (soft) link**.
-* If the original file is moved/deleted, the link becomes a **dead link**.
+- Creates a **symbolic (soft) link**.
+- If the original file is moved/deleted, the link becomes a **dead link**.
 
 #### `rm <link>` or `unlink <link>`
 
-* Deletes the link (not the original file).
+- Deletes the link (not the original file).
 
 #### `ls -lt`
 
-* Sorts files by **timestamp (latest first)**.
+- Sorts files by **timestamp (latest first)**.
 
 #### `ls -ltr`
 
-* Sorts by **timestamp in reverse** (latest last).
+- Sorts by **timestamp in reverse** (latest last).
 
 #### `hostname`
 
-* Displays the current hostname.
+- Displays the current hostname.
 
 #### Editing hostname:
 
@@ -455,24 +507,24 @@ Examples:
 sudo vim /etc/hostname
 ```
 
-* Change hostname and save.
-* It reflects after logout and login.
+- Change hostname and save.
+- It reflects after logout and login.
 
 ---
 
 ### 🔹 **Additional Tips**
 
-* **Link status**: If the original file is missing, soft links will show as **broken** (highlighted or blinking).
-* Use **absolute paths** when possible to avoid path issues.
-* **File types in `/dev`**: Device files such as `tty`, `sda`, `rtc0` show various types (`c`, `b`, etc.).
-* **Text editors** like `vim` are used to modify config files (e.g., changing hostname).
+- **Link status**: If the original file is missing, soft links will show as **broken** (highlighted or blinking).
+- Use **absolute paths** when possible to avoid path issues.
+- **File types in `/dev`**: Device files such as `tty`, `sda`, `rtc0` show various types (`c`, `b`, etc.).
+- **Text editors** like `vim` are used to modify config files (e.g., changing hostname).
 
 ---
 
 ### 🔹 **File History**
 
-* `history`: Show command history.
-* `sudo -i`: Switch to root and get root user history.
+- `history`: Show command history.
+- `sudo -i`: Switch to root and get root user history.
 
 ---
 
@@ -500,83 +552,94 @@ sudo vim /etc/hostname
 
 ### 📂 **Redirection Types**
 
-| Redirection | Symbol | Description                                 |                                                |
-| ----------- | ------ | ------------------------------------------- | ---------------------------------------------- |
-| Input       | `<`    | Pass file as input to a command             |                                                |
-| Output      | `>`    | Redirect command output to file (overwrite) |                                                |
-| Append      | `>>`   | Append command output to file               |                                                |
-| Error       | `2>`   | Redirect error stream                       |                                                |
-| Pipe        | \`     | \`                                          | Send output of one command as input to another |
+| Redirection | Symbol   | Description                                    |     |
+| ----------- | -------- | ---------------------------------------------- | --- |
+| Input       | `<`      | Pass file as input to a command                |     |
+| Output      | `>`      | Redirect command output to file (overwrite)    |     |
+| Append      | `>>`     | Append command output to file                  |     |
+| Error       | `2>`     | Redirect error stream                          |     |
+| Pipe        | `&#124;` | Send output of one command as input to another |     |
 
 ---
 
 ### 🔎 **`grep` Usage**
 
 ```bash
-grep firewall anaconda-ks.cfg           # Case-sensitive search 
+grep firewall anaconda-ks.cfg           # Case-sensitive search
 grep firewall < anaconda-ks.cfg   # by default input redirections
 
 grep -i firewall *                      # Case-insensitive across all files
 grep -iR firewall .                    # Recursive search (get also directory)
-grep -R SELINUX /etc/*                 # with subdirectory 
+grep -R SELINUX /etc/*                 # with subdirectory
 
 grep -v firewall anaconda-ks.cfg       # Show lines NOT matching
 ```
+
 ---
 
 ### **`less` Command**
+
 - **Basic Usage**:  
   `less /etc/passwd`  
   Displays the content of `/etc/passwd` interactively.
 
-- **Navigation**:  
-  - **Enter**: Scroll down line by line.  
-  - **d**: Jump to the next page.  
-  - **b**: Return to the previous page.  
-  - **/**: Search for a specific word (e.g., `/root` finds "root").  
+- **Navigation**:
+  - **Enter**: Scroll down line by line.
+  - **d**: Jump to the next page.
+  - **b**: Return to the previous page.
+  - **/**: Search for a specific word (e.g., `/root` finds "root").
   - **v**: Switch to `vi` mode to edit the file. Saving changes in `vi` returns you to `less`.
 
 ### **Purpose**
-`less` is ideal for viewing large files without loading them entirely into memory, offering efficient navigation and search capabilities. It improves upon `more` by allowing backward movement and additional features.  
+
+`less` is ideal for viewing large files without loading them entirely into memory, offering efficient navigation and search capabilities. It improves upon `more` by allowing backward movement and additional features.
 
 ### **Example Workflow**
-1. Open a file: `less /var/log/syslog`  
-2. Press **d** to page forward, **b** to go back.  
-3. Search for "error": `/error` (press **n** for next match).  
-4. Edit: Press **v**, modify the file in `vi`, save (`:wq`), and continue viewing.  
+
+1. Open a file: `less /var/log/syslog`
+2. Press **d** to page forward, **b** to go back.
+3. Search for "error": `/error` (press **n** for next match).
+4. Edit: Press **v**, modify the file in `vi`, save (`:wq`), and continue viewing.
 
 This makes `less` a versatile tool for both viewing and quick edits.
 
 ---
 
-###  `more` Command  
-**Purpose**: Views file content page-wise or line-by-line (similar to `less`, but with fewer features).  
+### `more` Command
 
-#### **Usage**:  
+**Purpose**: Views file content page-wise or line-by-line (similar to `less`, but with fewer features).
+
+#### **Usage**:
+
 ```bash
 more /etc/passwd
 ```
 
-#### **Key Controls**:  
-- **Enter**: Scroll down line by line.  
-- **d**: Jump to the next page.  
-- **/**: Search for a word (e.g., `/root`).  
-- **v**: Switch to `vi` mode to edit the file. Saving changes returns to `more`.  
+#### **Key Controls**:
 
-#### **Note**:  
-- Unlike `less`, `more` does **not** support scrolling backward (use `less` for bidirectional navigation).  
+- **Enter**: Scroll down line by line.
+- **d**: Jump to the next page.
+- **/**: Search for a word (e.g., `/root`).
+- **v**: Switch to `vi` mode to edit the file. Saving changes returns to `more`.
+
+#### **Note**:
+
+- Unlike `less`, `more` does **not** support scrolling backward (use `less` for bidirectional navigation).
 
 ---
 
-### `head` Command 
-**Purpose**: Displays the **top 10 lines** of a file by default (useful for quick previews).  
+### `head` Command
 
-#### **Usage**:  
+**Purpose**: Displays the **top 10 lines** of a file by default (useful for quick previews).
+
+#### **Usage**:
+
 ```bash
 head /etc/passwd
 ```
 
-#### **Example Output**:  
+#### **Example Output**:
+
 ```plaintext
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/bin:/sbin/nologin
@@ -590,8 +653,10 @@ mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
 uucp:x:10:14:uucp:/var/spool/uucp:/sbin/nologin
 ```
 
-#### **Custom Line Count**:  
-To show **N lines** (e.g., 5):  
+#### **Custom Line Count**:
+
+To show **N lines** (e.g., 5):
+
 ```bash
 head -n 5 /etc/passwd
 head -5 /etc/passwd
@@ -603,15 +668,18 @@ The screenshot explains the **`tail`** command in Linux, which is used to displa
 
 ---
 
-### **`tail` Command**  
-**Purpose**: Displays the **last 10 lines** of a file by default (useful for monitoring logs or recent changes).  
+### **`tail` Command**
 
-#### **Basic Syntax**:  
+**Purpose**: Displays the **last 10 lines** of a file by default (useful for monitoring logs or recent changes).
+
+#### **Basic Syntax**:
+
 ```bash
 tail /etc/passwd
 ```
 
-#### **Example Output**:  
+#### **Example Output**:
+
 ```plaintext
 apache:x:48:48:Apache:/var/www:/sbin/nologin
 nsLcd:x:65:55:LDAP Client User:/:/sbin/nologin
@@ -627,53 +695,61 @@ ktuser:x:501:501:/home/ktuser:/bin/bash
 
 ---
 
-### **Key Features & Options**  
+### **Key Features & Options**
+
 1. **Custom Line Count**:  
-   Show the last `N` lines (e.g., 5):  
+   Show the last `N` lines (e.g., 5):
+
    ```bash
    tail -n 5 /etc/passwd
    ```
 
 2. **Monitor Real-Time Updates (Logs)**:  
-   Continuously display new lines appended to a file (e.g., log files):  
+   Continuously display new lines appended to a file (e.g., log files):
+
    ```bash
    tail -f /var/log/syslog
    ```
-   - **Ctrl+C** to exit.  
+
+   - **Ctrl+C** to exit.
 
 3. **Show Bytes Instead of Lines**:  
-   Display the last `N` bytes (e.g., 100 bytes):  
+   Display the last `N` bytes (e.g., 100 bytes):
    ```bash
    tail -c 100 /etc/passwd
    ```
 
 ---
 
-### **Practical Use Cases**  
-1. **Check Recent Log Entries**:  
+### **Practical Use Cases**
+
+1. **Check Recent Log Entries**:
+
    ```bash
    tail -n 20 /var/log/nginx/error.log
    ```
 
-2. **Track Live Logs**:  
+2. **Track Live Logs**:
+
    ```bash
    tail -f /var/log/auth.log
    ```
 
 3. **Verify File Updates**:  
-   After editing a file, confirm the last few lines:  
+   After editing a file, confirm the last few lines:
    ```bash
    tail -n 3 ~/my_script.sh
    ```
 
 ---
 
-### **Summary**  
-- **Default**: `tail` shows the last 10 lines.  
-- **Essential Flags**:  
-  - `-n <number>`: Customize line count.  
-  - `-f`: Follow real-time updates (critical for logs).  
-- **Complementary to `head`**: Use both to inspect file **start** vs. **end**.  
+### **Summary**
+
+- **Default**: `tail` shows the last 10 lines.
+- **Essential Flags**:
+  - `-n <number>`: Customize line count.
+  - `-f`: Follow real-time updates (critical for logs).
+- **Complementary to `head`**: Use both to inspect file **start** vs. **end**.
 
 ---
 
@@ -684,8 +760,8 @@ cut -d ':' -f1 /etc/passwd              # Get first column (usernames)
 awk -F':' '{print $1}' /etc/passwd      # Same with awk, more flexible
 ```
 
-* -d (delemeter / separator)
-* -f1 (field 1/ first column)
+- -d (delemeter / separator)
+- -f1 (field 1/ first column)
 
 ```bash
 [root@localhost ~]# less /etc/passwd
@@ -705,7 +781,9 @@ adm
 lp
 sync
 ```
+
 - for any advanced or inteligence search awk is better
+
 ---
 
 ### 🔁 **Search and Replace**
@@ -716,7 +794,9 @@ sync
 :%s/coronavirus/covid-19/g              # Replace all occurrences globally
 :%s/covid-19//g                         # Replace with nothing
 ```
+
 - without /g (globally) it changes which occur first
+
 #### 🔧 Using `sed` (for multiple file)
 
 ```bash
@@ -737,18 +817,18 @@ less /var/log/messages                  # Scrollable view
 
 ### 🧪 **Example: Monitoring SSH Login**
 
-* Use `tail -f /var/log/messages` in one shell.
-* Login via `ssh` from another terminal.
-* Observe dynamic log update.
+- Use `tail -f /var/log/messages` in one shell.
+- Login via `ssh` from another terminal.
+- Observe dynamic log update.
 
 ---
 
 ### 🛡️ **Admin Tips**
 
-* Use filters (`grep`, `cut`, `awk`) to search config files like `/etc/passwd`, `/etc/selinux/...`
-* Use `tail -f` to live monitor logs for debugging (important for trobleshooting)
-* Automate changes in multiple files using `sed -i`
-* Combine filters with pipes for powerful scripting
+- Use filters (`grep`, `cut`, `awk`) to search config files like `/etc/passwd`, `/etc/selinux/...`
+- Use `tail -f` to live monitor logs for debugging (important for trobleshooting)
+- Automate changes in multiple files using `sed -i`
+- Combine filters with pipes for powerful scripting
 
 ---
 
@@ -756,19 +836,19 @@ less /var/log/messages                  # Scrollable view
 
 ### 🔹 Standard Output (stdout)
 
-* Default output goes to the screen (monitor).
-* Redirect stdout to a file:
+- Default output goes to the screen (monitor).
+- Redirect stdout to a file:
 
   ```bash
   command > file.txt
   ```
 
-  * Creates the file if it doesn't exist.
-  * Overwrites the file if it exists.
+  - Creates the file if it doesn't exist.
+  - Overwrites the file if it exists.
 
 ### 🔹 Append Output
 
-* Use `>>` to append instead of overwrite:
+- Use `>>` to append instead of overwrite:
 
   ```bash
   command >> file.txt
@@ -785,7 +865,7 @@ ls >> /tmp/sysinfo.txt
 
 ## 🗑️ **2. Discard Output with `/dev/null`**
 
-* Sends output to a black hole (discard):
+- Sends output to a black hole (discard):
 
   ```bash
   command > /dev/null
@@ -813,9 +893,9 @@ command 2> error.log
 command &> output.log
 ```
 
-* `1>` = stdout
-* `2>` = stderr
-* `&>` = both
+- `1>` = stdout
+- `2>` = stderr
+- `&>` = both
 
 ---
 
@@ -835,7 +915,7 @@ date               # Current date/time
 
 ## 🧪 **5. Piping (|)**
 
-* Send the output of one command as input to another.
+- Send the output of one command as input to another.
 
 ```bash
 command1 | command2
@@ -858,7 +938,7 @@ tail -20 /var/log/messages | grep vagrant
 ls /etc | grep host
 ```
 
-* Searches for lines containing “host”.
+- Searches for lines containing “host”.
 
 ---
 
@@ -870,7 +950,7 @@ ls /etc | grep host
 find /etc -name "host*"
 ```
 
-* Can be slow at root (`/`) level.
+- Can be slow at root (`/`) level.
 
 ### 🔹 Database-based search (faster):
 
@@ -880,13 +960,13 @@ sudo updatedb                 # Update the locate DB
 locate host                   # Fast file search
 ```
 
-* ⚠️ Must run `updatedb` to get latest info.
+- ⚠️ Must run `updatedb` to get latest info.
 
 ---
 
 ## 📜 **8. Logs and Redirection in Scripting**
 
-* Long-running or background scripts often redirect output to log files:
+- Long-running or background scripts often redirect output to log files:
 
 ```bash
 ./script.sh > /var/log/myscript.log 2>&1
@@ -902,10 +982,10 @@ history
 
 ---
 
-## ✅ Summary Table 
-
+## ✅ Summary Table
 
 ### **Linux Redirection Symbols Cheat Sheet**
+
 <table>
   <tr>
     <th>Symbol</th>
@@ -972,14 +1052,16 @@ history
 ---
 
 ### **Key Notes:**
-1. **Order Matters**:  
-   - `2>&1 > file` ≠ `> file 2>&1`. The latter redirects both streams to the file.  
-2. **Common Use Cases**:  
-   - **Logs**: Append (`>>`) to log files without overwriting.  
-   - **Debugging**: Separate stdout and stderr (e.g., `2> errors.log`).  
-   - **Pipes**: Chain commands (e.g., `ps aux | grep nginx`).  
+
+1. **Order Matters**:
+   - `2>&1 > file` ≠ `> file 2>&1`. The latter redirects both streams to the file.
+2. **Common Use Cases**:
+   - **Logs**: Append (`>>`) to log files without overwriting.
+   - **Debugging**: Separate stdout and stderr (e.g., `2> errors.log`).
+   - **Pipes**: Chain commands (e.g., `ps aux | grep nginx`).
 
 ### **Example Workflow:**
+
 ```bash
 # Redirect all output (stdout + stderr) to a log file, then email it:
 ls /nonexistent &> debug.log && mail -s "Log" user@example.com < debug.log
@@ -988,83 +1070,94 @@ ls /nonexistent &> debug.log && mail -s "Log" user@example.com < debug.log
 ---
 
 ### **Linux Users & Groups: Core Concepts**
+
 #### **1. Purpose of Users/Groups**
-- Control access to files, resources, and processes.  
-- Every file is owned by a **user** and an associated **group** (e.g., `/etc/passwd`, `/etc/group`).  
+
+- Control access to files, resources, and processes.
+- Every file is owned by a **user** and an associated **group** (e.g., `/etc/passwd`, `/etc/group`).
 - Permissions are assigned via `chmod` (symbolic/numeric) and `chown`/`chgrp`.
 
 #### **2. User Types**
-| Type          | UID/GID Range      | Home Dir       | Login Shell          | Example               |
-|---------------|--------------------|----------------|----------------------|-----------------------|
-| **Root**      | `0`                | `/root`        | `/bin/bash`          | `root`                |
-| **Regular**   | `≥1000`            | `/home/user`   | `/bin/bash`          | `vagrant`, `ansible`  |
-| **System**    | `1–999`            | `/var`/`/etc`  | `/sbin/nologin`      | `apache`, `sshd`      |
+
+| Type        | UID/GID Range | Home Dir      | Login Shell     | Example              |
+| ----------- | ------------- | ------------- | --------------- | -------------------- |
+| **Root**    | `0`           | `/root`       | `/bin/bash`     | `root`               |
+| **Regular** | `≥1000`       | `/home/user`  | `/bin/bash`     | `vagrant`, `ansible` |
+| **System**  | `1–999`       | `/var`/`/etc` | `/sbin/nologin` | `apache`, `sshd`     |
 
 #### **3. Key Files**
+
 - **`/etc/passwd`**:  
   Format: `username:x:UID:GID:comment:homedir:shell`  
-  Example: `root:x:0:0:root:/root:/bin/bash`  
-  - `x` indicates password is in `/etc/shadow`.  
+  Example: `root:x:0:0:root:/root:/bin/bash`
 
-- **`/etc/shadow`**: Stores encrypted passwords and expiry details.  
+  - `x` indicates password is in `/etc/shadow`.
+
+- **`/etc/shadow`**: Stores encrypted passwords and expiry details.
 - **`/etc/group`**:  
   Format: `groupname:x:GID:members`  
-  Example: `devops:x:1001:ansible,jenkins`  
+  Example: `devops:x:1001:ansible,jenkins`
 
 ---
 
 ### **Commands & Operations**
+
 #### **1. User Management**
+
 > root user don't need any password
-- **Create User**:  
+
+- **Create User**:
   ```bash
   useradd ansible  # Creates user with default home dir
   passwd ansible   # Set password
   ```
-- **Delete User**:  
+- **Delete User**:
   ```bash
   userdel ansible          # Keeps home dir
   userdel -r jenkins       # Deletes home dir too
   ```
-> but exist in home directory, to delete from home directory also 
+  > but exist in home directory, to delete from home directory also
 
 #### **2. Group Management**
-- **Create Group**:  
+
+- **Create Group**:
   ```bash
   groupadd devops
   ```
-- **Add User to Group**:  
+- **Add User to Group**:
   ```bash
   usermod -aG devops ansible  # Adds to supplementary group
   ```
-  Or edit `/etc/group` directly:  
+  Or edit `/etc/group` directly:
   ```plaintext
   devops:x:1001:ansible,jenkins
   ```
-- **Delete Group**:  
+- **Delete Group**:
   ```bash
   groupdel devops
   ```
 
 #### **3. Switching Users**
-- **Root to Any User**: No password needed.  
+
+- **Root to Any User**: No password needed.
   ```bash
   su - ansible
   ```
-- **Regular Users**: Password required.  
+- **Regular Users**: Password required.
   ```bash
   su - jenkins
   ```
-> back to root user need to exit each other user
+  > back to root user need to exit each other user
 
 #### **4. Monitoring Users**
-- **Current User**:  
+
+- **Current User**:
   ```bash
   whoami      # Shows username
   who         # Lists logged-in users
   last        # Shows login history
   ```
-- **Open Files by User**:  
+- **Open Files by User**:
   ```bash
   lsof -u ansible  # Installed via `yum install lsof`
   ```
@@ -1072,17 +1165,21 @@ ls /nonexistent &> debug.log && mail -s "Log" user@example.com < debug.log
 ---
 
 ### **Practical Examples**
+
 #### **1. Create a Service User**
+
 ```bash
 useradd -s /sbin/nologin -M apache_user  # No shell, no home dir
 ```
 
 #### **2. Bulk Add Users to Group**
+
 ```bash
 usermod -aG devops jenkins aws ansible
 ```
 
 #### **3. Verify User/Group Info**
+
 ```bash
 id ansible          # Shows UID, GID, groups
 grep devops /etc/group  # Lists group members
@@ -1091,26 +1188,29 @@ grep devops /etc/group  # Lists group members
 ---
 
 ### **Key Takeaways**
-- **Root User**: Unlimited access (UID 0).  
-- **System Users**: For background processes (e.g., `sshd`).  
-- **Primary vs. Supplementary Groups**:  
-  - Primary: Default group (same as username).  
-  - Supplementary: Additional permissions (e.g., `devops`).  
+
+- **Root User**: Unlimited access (UID 0).
+- **System Users**: For background processes (e.g., `sshd`).
+- **Primary vs. Supplementary Groups**:
+  - Primary: Default group (same as username).
+  - Supplementary: Additional permissions (e.g., `devops`).
 - **Security**: Use `/sbin/nologin` for service users to prevent shell access.
 
 ---
 
 ### **Next Steps**
-- **File Permissions**: Use `chmod` (e.g., `chmod 755 file`) and `chown` (e.g., `chown user:group file`).  
-- **Sudo Privileges**: Grant admin rights via `/etc/sudoers` (edit with `visudo`).  
+
+- **File Permissions**: Use `chmod` (e.g., `chmod 755 file`) and `chown` (e.g., `chown user:group file`).
+- **Sudo Privileges**: Grant admin rights via `/etc/sudoers` (edit with `visudo`).
 
 ---
-
 
 # 📁 Linux File Permissions & Ownership
 
 ## 🧾 File Ownership
+
 Every file/directory in Linux has:
+
 - A **user (owner)**
 - A **group**
 - **Others** (everyone else)
@@ -1122,40 +1222,46 @@ Use `ls -l` to view file ownership and permissions.
 ## 🔤 Symbolic File Permissions
 
 Format example:
+
 ```
 -rwxr-xr-- 1 user group 4096 date file.txt
 ```
 
 Breakdown:
+
 - `-` = file type (`-`, `d`, `l`, etc.)
 - `rwx` = user permissions
 - `r-x` = group permissions
 - `r--` = others permissions
 
-| Symbol | Meaning        |
-|--------|----------------|
-| `r`    | Read           |
-| `w`    | Write          |
-| `x`    | Execute        |
-| `-`    | No permission  |
+| Symbol | Meaning       |
+| ------ | ------------- |
+| `r`    | Read          |
+| `w`    | Write         |
+| `x`    | Execute       |
+| `-`    | No permission |
 
 ---
+
 > create directory, # ls -ld /opt/devopsdir
 
-> directory ownership, # chown -R ansible:devops /opt/devopsdir  (-R means do it recursively, be careful with that)
+> directory ownership, # chown -R ansible:devops /opt/devopsdir (-R means do it recursively, be careful with that)
 
 ## 🔧 chmod: Changing Permissions
 
 ### Symbolic Method
+
 ```bash
 chmod u+x file       # Add execute for user
 chmod g-w file       # Remove write for group
 chmod o=r file       # Set read-only for others
 ```
+
 > permission change, # chmod o-x /opt/devopsdir (other remove execute permission)
 > chmod g+w /opt/devopsdir (group add write permission)
 
 ### Numeric Method
+
 ```bash
 chmod 640 file
 ```
@@ -1164,17 +1270,18 @@ chmod 640 file
 - `4` (group): read only
 - `0` (others): no access
 
-| Value | Meaning             |
-|-------|---------------------|
+| Value | Meaning                    |
+| ----- | -------------------------- |
 | 7     | rwx (read, write, execute) |
-| 6     | rw- (read, write)   |
-| 5     | r-x (read, execute) |
-| 4     | r-- (read only)     |
-| 0     | --- (no permission) |
+| 6     | rw- (read, write)          |
+| 5     | r-x (read, execute)        |
+| 4     | r-- (read only)            |
+| 0     | --- (no permission)        |
 
 ---
 
 ## 👤 chown: Changing Ownership
+
 ```bash
 chown user:group file
 ```
@@ -1182,6 +1289,7 @@ chown user:group file
 - `-R`: change recursively
 
 Example:
+
 ```bash
 chown ansible:devops /opt/devopsdir
 ```
@@ -1190,11 +1298,11 @@ chown ansible:devops /opt/devopsdir
 
 ## 📁 Directory Permissions
 
-| Permission | Effect                       |
-|------------|------------------------------|
-| `r`        | List contents (`ls`)         |
-| `w`        | Add/remove files             |
-| `x`        | Access directory via `cd`    |
+| Permission | Effect                    |
+| ---------- | ------------------------- |
+| `r`        | List contents (`ls`)      |
+| `w`        | Add/remove files          |
+| `x`        | Access directory via `cd` |
 
 ---
 
@@ -1209,10 +1317,10 @@ chown ansible:devops /opt/devopsdir
 
 ## 🔐 Access Control (Observed Behavior)
 
-| User   | Access to `/opt/devopsdir` | Permissions         |
-|--------|-----------------------------|---------------------|
-| miles  | ❌ Denied                   | Not in group        |
-| aws    | ✅ Allowed                  | Member of devops    |
+| User  | Access to `/opt/devopsdir` | Permissions      |
+| ----- | -------------------------- | ---------------- |
+| miles | ❌ Denied                  | Not in group     |
+| aws   | ✅ Allowed                 | Member of devops |
 
 ---
 
@@ -1234,13 +1342,13 @@ chmod 755 script.sh   # User: rwx, Group/Others: r-x
 
 ---
 
-# 🔐 Using `sudo` and `sudoers` in Linux 
+# 🔐 Using `sudo` and `sudoers` in Linux
 
 ## ✅ What is `sudo`?
 
-* `sudo` allows permitted users to **execute commands as another user**, typically root.
-* Acts like a **power of attorney** – grants elevated privilege temporarily.
-* Common usage:
+- `sudo` allows permitted users to **execute commands as another user**, typically root.
+- Acts like a **power of attorney** – grants elevated privilege temporarily.
+- Common usage:
 
   ```bash
   sudo -i            # switch to root user
@@ -1251,8 +1359,8 @@ chmod 755 script.sh   # User: rwx, Group/Others: r-x
 
 ## 🔍 Why Can't All Users Use `sudo`?
 
-* Only users listed in the **sudoers** configuration are allowed.
-* Unauthorized users get:
+- Only users listed in the **sudoers** configuration are allowed.
+- Unauthorized users get:
 
   ```
   <user> is not in the sudoers file. This incident will be reported.
@@ -1305,13 +1413,14 @@ sudo useradd test_user   # test root-level command
 
 ## 💥 Sudoers Syntax Error?
 
-* If you make a mistake in `sudoers`, you’ll see:
+- If you make a mistake in `sudoers`, you’ll see:
 
   ```
   >>> /etc/sudoers: syntax error near line X <<<
   ```
-* Use `visudo` again and press `e` to edit and fix.
-* Saving with syntax errors can **break sudo** and lock out all users.
+
+- Use `visudo` again and press `e` to edit and fix.
+- Saving with syntax errors can **break sudo** and lock out all users.
 
 ---
 
@@ -1329,22 +1438,22 @@ Add:
 %devops ALL=(ALL) NOPASSWD:ALL
 ```
 
-* `%devops` = devops group (use `%` for groups).
-* Safer because one broken file won’t corrupt the main config.
-* You can create user-specific entries here too.
+- `%devops` = devops group (use `%` for groups).
+- Safer because one broken file won’t corrupt the main config.
+- You can create user-specific entries here too.
 
 ---
 
 ## 👥 Example Scenario from Video
 
-* **Users**: `vagrant`, `ansible`
-* **Groups**: `devops`
-* **Steps**:
+- **Users**: `vagrant`, `ansible`
+- **Groups**: `devops`
+- **Steps**:
 
-  * `ansible` initially lacked sudo rights.
-  * Added via `visudo`
-  * Enabled passwordless sudo with `NOPASSWD`
-  * Used `/etc/sudoers.d/devops` for safer access control
+  - `ansible` initially lacked sudo rights.
+  - Added via `visudo`
+  - Enabled passwordless sudo with `NOPASSWD`
+  - Used `/etc/sudoers.d/devops` for safer access control
 
 ---
 
@@ -1365,12 +1474,12 @@ Add:
 
 In Linux, **every file/directory** has:
 
-* An **owner (user)** and a **group**
-* Permissions for:
+- An **owner (user)** and a **group**
+- Permissions for:
 
-  * **User** (owner)
-  * **Group**
-  * **Others**
+  - **User** (owner)
+  - **Group**
+  - **Others**
 
 ### Permission Types
 
@@ -1383,9 +1492,9 @@ In Linux, **every file/directory** has:
 
 ### Example: `-rwxr-xr--`
 
-* User: read, write, execute → `7`
-* Group: read, execute → `5`
-* Others: read only → `4`
+- User: read, write, execute → `7`
+- Group: read, execute → `5`
+- Others: read only → `4`
 
 **Changing Permissions:**
 
@@ -1430,7 +1539,7 @@ This avoids breaking the main `/etc/sudoers` file.
 
 ## 📦 Software Management
 
->  tree /var/log
+> tree /var/log
 > curl http... -o abc
 
 ### 🔧 RPM (Manual)
@@ -1445,7 +1554,7 @@ List installed packages:
 
 ```bash
 rpm -qa
-rpm -qa | grep tree (rpm -qa pipe grep tree) 
+rpm -qa | grep tree (rpm -qa pipe grep tree)
 ```
 
 Uninstall:
@@ -1467,6 +1576,7 @@ Install:
 ```bash
 yum install httpd -y
 ```
+
 > if failed dependencies to install a rpm package
 
 > rpm -qa (all rpm check)
@@ -1563,8 +1673,6 @@ These define how to start and stop the service.
 
 ---
 
-
-
 ## 🧠 Linux Process Management (Monitoring & Control)
 
 Processes are fundamental to Linux operation. You can manage, monitor, and kill them using built-in commands.
@@ -1579,11 +1687,11 @@ Processes are fundamental to Linux operation. You can manage, monitor, and kill 
 
 #### `top` Key Metrics
 
-* **Load Average**: CPU wait time (1, 5, and 15 mins).
-* **PID**: Process ID.
-* **USER**: Who runs the process.
-* **%CPU / %MEM**: Resource usage.
-* **S**: Process state (e.g., `S` = sleeping, `R` = running).
+- **Load Average**: CPU wait time (1, 5, and 15 mins).
+- **PID**: Process ID.
+- **USER**: Who runs the process.
+- **%CPU / %MEM**: Resource usage.
+- **S**: Process state (e.g., `S` = sleeping, `R` = running).
 
 ### 🧼 Cleaning Up Processes
 
@@ -1625,13 +1733,14 @@ ps -ef | grep httpd | grep -v grep | awk '{print $2}' | xargs kill -9
 
 ## 1. Introduction to Archiving
 
-* Archiving is the process of collecting multiple files or directories into a single file.
-* Common use cases:
+- Archiving is the process of collecting multiple files or directories into a single file.
+- Common use cases:
 
-  * Taking backups
-  * Restoring backups
-  * Handling archive files downloaded from the internet or elsewhere
-* Archiving can be combined with compression to save disk space.
+  - Taking backups
+  - Restoring backups
+  - Handling archive files downloaded from the internet or elsewhere
+
+- Archiving can be combined with compression to save disk space.
 
 ---
 
@@ -1639,9 +1748,9 @@ ps -ef | grep httpd | grep -v grep | awk '{print $2}' | xargs kill -9
 
 ### What is `tar`?
 
-* `tar` stands for **tape archive**.
-* It is a legacy (old but still widely used) archiving tool in Linux.
-* `tar` can create archives and compress them using different algorithms.
+- `tar` stands for **tape archive**.
+- It is a legacy (old but still widely used) archiving tool in Linux.
+- `tar` can create archives and compress them using different algorithms.
 
 ### Basic syntax for creating a compressed tar archive (tarball):
 
@@ -1651,34 +1760,34 @@ tar -czvf archive_name.tar.gz /path/to/directory_or_files
 
 ### Explanation of options:
 
-* `c`: Create a new archive
-* `z`: Compress the archive using gzip (gunzip)
-* `v`: Verbose output (show the progress)
-* `f`: Specify the filename of the archive
+- `c`: Create a new archive
+- `z`: Compress the archive using gzip (gunzip)
+- `v`: Verbose output (show the progress)
+- `f`: Specify the filename of the archive
 
 ### Example:
 
-* Archiving the `jenkins` directory inside `/var/log`:
+- Archiving the `jenkins` directory inside `/var/log`:
 
 ```bash
 cd /var/log
 tar -czvf jenkins_<timestamp>.tar.gz jenkins
 ```
 
-* The output file will be a **tarball**: `jenkins_<timestamp>.tar.gz`
+- The output file will be a **tarball**: `jenkins_<timestamp>.tar.gz`
 
 ---
 
 ## 3. Checking the Archive File Type
 
-* Use `ls -ltr` to list files sorted by modification time.
-* Use the `file` command to check the file type, e.g.:
+- Use `ls -ltr` to list files sorted by modification time.
+- Use the `file` command to check the file type, e.g.:
 
 ```bash
 file jenkins_<timestamp>.tar.gz
 ```
 
-* It should report: **gzip compressed data** or similar.
+- It should report: **gzip compressed data** or similar.
 
 ---
 
@@ -1690,10 +1799,10 @@ file jenkins_<timestamp>.tar.gz
 tar -xzvf archive_name.tar.gz
 ```
 
-* `x`: Extract files from archive
-* `z`: Decompress gzip
-* `v`: Verbose output
-* `f`: Specify archive filename
+- `x`: Extract files from archive
+- `z`: Decompress gzip
+- `v`: Verbose output
+- `f`: Specify archive filename
 
 ### Extracting to a specific directory:
 
@@ -1701,27 +1810,28 @@ tar -xzvf archive_name.tar.gz
 tar -xzvf archive_name.tar.gz -C /desired/path
 ```
 
-* `-C` specifies the directory where to extract.
+- `-C` specifies the directory where to extract.
 
 ---
 
 ## 5. Additional `tar` Features and Options
 
-* Compare tarballs using `-d` option.
-* Update an existing tarball.
-* Other compression methods:
+- Compare tarballs using `-d` option.
+- Update an existing tarball.
+- Other compression methods:
 
-  * `-a` : Auto detect compression
-  * `-j` : Use bzip2 compression
-  * `-J` : Use xz compression
-* `tar` is a **feature-rich** and versatile tool for archiving in Linux.
+  - `-a` : Auto detect compression
+  - `-j` : Use bzip2 compression
+  - `-J` : Use xz compression
+
+- `tar` is a **feature-rich** and versatile tool for archiving in Linux.
 
 ---
 
 ## 6. Archiving with `zip` Command
 
-* Simpler alternative to `tar`.
-* May need to install first on some systems:
+- Simpler alternative to `tar`.
+- May need to install first on some systems:
 
 ```bash
 yum install zip unzip
@@ -1733,7 +1843,7 @@ yum install zip unzip
 zip -r archive_name.zip directory_to_compress
 ```
 
-* `-r`: Recursively compress directory contents.
+- `-r`: Recursively compress directory contents.
 
 ### Example:
 
@@ -1745,26 +1855,26 @@ zip -r httpd_<timestamp>.zip httpd
 
 ## 7. Extracting Zip Archives
 
-* Use `unzip` command:
+- Use `unzip` command:
 
 ```bash
 unzip archive_name.zip
 ```
 
-* To extract in current directory or overwrite files.
+- To extract in current directory or overwrite files.
 
 ---
 
 ## 8. Example Workflow Summary
 
-* Archive Jenkins logs using `tar`:
+- Archive Jenkins logs using `tar`:
 
 ```bash
 cd /var/log
 tar -czvf jenkins_06122020.tar.gz jenkins
 ```
 
-* Move archive to another directory, e.g., `/tmp` or `/opt`:
+- Move archive to another directory, e.g., `/tmp` or `/opt`:
 
 ```bash
 mv jenkins_06122020.tar.gz /tmp
@@ -1772,13 +1882,13 @@ cd /tmp
 tar -xzvf jenkins_06122020.tar.gz
 ```
 
-* Extract to a different directory:
+- Extract to a different directory:
 
 ```bash
 tar -xzvf jenkins_06122020.tar.gz -C /opt
 ```
 
-* Using `zip`:
+- Using `zip`:
 
 ```bash
 zip -r jenkins_06122020.zip jenkins
@@ -1791,10 +1901,10 @@ unzip jenkins_06122020.zip
 
 ## 9. General Notes
 
-* `tar` and `zip` are the two most common methods for archiving/compressing files in Linux.
-* `tar` is more feature-rich and flexible, especially for complex archiving.
-* `zip` is simpler and widely supported, especially in Windows environments.
-* Knowing both commands is useful depending on the task.
+- `tar` and `zip` are the two most common methods for archiving/compressing files in Linux.
+- `tar` is more feature-rich and flexible, especially for complex archiving.
+- `zip` is simpler and widely supported, especially in Windows environments.
+- Knowing both commands is useful depending on the task.
 
 ---
 
@@ -1802,84 +1912,92 @@ unzip jenkins_06122020.zip
 
 ### 1. Introduction & Environment Setup
 
-* Ubuntu commands are mostly similar to CentOS except for a few differences.
-* The session uses a Vagrant VM for Ubuntu (`/f/vagrant-vms/ubuntu`).
-* VM can be managed using `vagrant global-status` and `vagrant up`.
-* Connect to VM via `vagrant ssh`.
-* Check OS version with `/etc/os-release` (Ubuntu 22).
+- Ubuntu commands are mostly similar to CentOS except for a few differences.
+- The session uses a Vagrant VM for Ubuntu (`/f/vagrant-vms/ubuntu`).
+- VM can be managed using `vagrant global-status` and `vagrant up`.
+- Connect to VM via `vagrant ssh`.
+- Check OS version with `/etc/os-release` (Ubuntu 22).
 
 ---
 
 ### 2. User Management Differences
 
-* `useradd` command in Ubuntu **does not** create a home directory by default.
-* `useradd devops` creates user but no home directory or mail spool.
-* To delete user including home directory: `userdel -r devops` (may warn if no home directory exists).
-* **Preferred Ubuntu command**: `adduser` (not `useradd`).
+- `useradd` command in Ubuntu **does not** create a home directory by default.
+- `useradd devops` creates user but no home directory or mail spool.
+- To delete user including home directory: `userdel -r devops` (may warn if no home directory exists).
+- **Preferred Ubuntu command**: `adduser` (not `useradd`).
 
-  * `adduser devops` creates:
+  - `adduser devops` creates:
 
-    * User and group `devops`
-    * Home directory with default files copied from `/etc/skel`
-    * Sets user password and optional info (full name, room number, phone, etc.)
-* `/etc/skel` contains template files copied into new user’s home directory.
-* Ubuntu tools for user management:
+    - User and group `devops`
+    - Home directory with default files copied from `/etc/skel`
+    - Sets user password and optional info (full name, room number, phone, etc.)
 
-  * `passwd` to set/change password
-  * `groupadd` to add groups
-  * `usermod` to modify users
+- `/etc/skel` contains template files copied into new user’s home directory.
+- Ubuntu tools for user management:
+
+  - `passwd` to set/change password
+  - `groupadd` to add groups
+  - `usermod` to modify users
 
 ---
 
 ### 3. Default Editor & visudo
 
-* `visudo` opens the sudoers file.
-* On Ubuntu, default editor for `visudo` is **nano** (instead of `vi` or `vim`).
-* To switch default editor to vim temporarily:
+- `visudo` opens the sudoers file.
+- On Ubuntu, default editor for `visudo` is **nano** (instead of `vi` or `vim`).
+- To switch default editor to vim temporarily:
 
-  * Run: `export EDITOR=vim`
-  * This setting lasts only for the current shell session.
-* After setting, `visudo` opens in vim; use `:q` to quit.
-* To make permanent, add export command to shell profile (covered later in Bash scripting).
+  - Run: `export EDITOR=vim`
+  - This setting lasts only for the current shell session.
+
+- After setting, `visudo` opens in vim; use `:q` to quit.
+- To make permanent, add export command to shell profile (covered later in Bash scripting).
 
 ---
 
 ### 4. Package Management Differences
 
-* Ubuntu uses `apt` (or `apt-get`) instead of `yum` (used in CentOS).
-* Ubuntu package info stored in `/etc/apt/sources.list`.
-* `apt update`:
+- Ubuntu uses `apt` (or `apt-get`) instead of `yum` (used in CentOS).
+- Ubuntu package info stored in `/etc/apt/sources.list`.
+- `apt update`:
 
-  * Updates package lists from repositories.
-  * Must be run before installing or upgrading packages.
-* `apt search <package>`:
+  - Updates package lists from repositories.
+  - Must be run before installing or upgrading packages.
 
-  * Searches for packages matching `<package>`.
-* `apt install <package>`:
+- `apt search <package>`:
 
-  * Installs package with dependencies.
-* `apt upgrade`:
+  - Searches for packages matching `<package>`.
 
-  * Upgrades all installed packages to latest versions.
-* `apt remove <package>`:
+- `apt install <package>`:
 
-  * Removes package but keeps config files.
-* `apt purge <package>`:
+  - Installs package with dependencies.
 
-  * Removes package **and** its config files (clean uninstall).
-* Packages can also be manually downloaded as `.deb` files and installed using:
+- `apt upgrade`:
 
-  * `dpkg -i <package>.deb`
-  * `dpkg -r <package>` to remove
+  - Upgrades all installed packages to latest versions.
+
+- `apt remove <package>`:
+
+  - Removes package but keeps config files.
+
+- `apt purge <package>`:
+
+  - Removes package **and** its config files (clean uninstall).
+
+- Packages can also be manually downloaded as `.deb` files and installed using:
+
+  - `dpkg -i <package>.deb`
+  - `dpkg -r <package>` to remove
 
 ---
 
 ### 5. Service Management
 
-* Installing services like Apache2 automatically starts and enables the service.
-* Check status with systemctl (`systemctl status apache2`).
-* Firewall in Ubuntu uses **UFW** (Uncomplicated Firewall).
-* Package installs may update firewall rules automatically.
+- Installing services like Apache2 automatically starts and enables the service.
+- Check status with systemctl (`systemctl status apache2`).
+- Firewall in Ubuntu uses **UFW** (Uncomplicated Firewall).
+- Package installs may update firewall rules automatically.
 
 ---
 
@@ -1897,10 +2015,10 @@ unzip jenkins_06122020.zip
 
 ### 7. Tips & Notes
 
-* Use `adduser` in Ubuntu for interactive user creation with home dir.
-* Use `export EDITOR=vim` before `visudo` for vim editor.
-* Run `apt update` regularly before installing/upgrading packages.
-* `apt purge` for clean package removal including config files.
-* Practice these commands to get comfortable with Ubuntu.
+- Use `adduser` in Ubuntu for interactive user creation with home dir.
+- Use `export EDITOR=vim` before `visudo` for vim editor.
+- Run `apt update` regularly before installing/upgrading packages.
+- `apt purge` for clean package removal including config files.
+- Practice these commands to get comfortable with Ubuntu.
 
 ---
