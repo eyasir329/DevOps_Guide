@@ -2,7 +2,23 @@
 
 Git is a core DevOps tool because it helps you collaborate with developers, track infrastructure/automation changes, and recover quickly when something breaks.
 
-### Guiding principles
+## Table of contents
+
+- [Guiding principles](#guiding-principles)
+- [Why DevOps engineers use Git](#why-devops-engineers-use-git)
+- [Evolution of version control](#evolution-of-version-control)
+- [Installation and initial setup](#installation-and-initial-setup)
+- [Local workflow](#local-workflow-working-tree--staging--commit)
+- [Remote integration (GitHub)](#remote-integration-github)
+- [Branching, merging, and repository management](#branching-merging-and-repository-management)
+- [Rolling back changes](#rolling-back-changes)
+- [SSH authentication with GitHub](#ssh-authentication-with-github)
+- [Hands-on notes (practice session)](#hands-on-notes-practice-session)
+- [References](#references)
+
+---
+
+## Guiding principles
 
 - As a system admin: take a backup (or snapshot) before risky changes.
 - Git tracks files, not empty directories.
@@ -77,7 +93,7 @@ This creates the `.git/` directory which stores your history and metadata.
 
 ---
 
-## Local workflow (working tree → staging → commit)
+## Local workflow (working tree -> staging -> commit)
 
 ![versioning](v7.png)
 
@@ -312,15 +328,6 @@ On first connection, verify the fingerprint and type `yes`.
 
 Manual backups are error-prone and hard to manage at scale. Git makes changes traceable and recoverable.
 
-### Common repository operations
-
-```bash
-git status
-git merge sprint1
-git switch sprint1
-git push --all origin
-```
-
 ### Recovery via clone
 
 ```bash
@@ -330,24 +337,6 @@ git clone https://github.com/imranvisualpath/titanwork.git
 
 This demonstrates how a remote can act as a recovery source.
 
-### Inspecting and rolling back files
-
-```bash
-git diff
-git restore jupiter1.rb
-git restore --staged jupiter1.rb
-```
-
-Note: older docs may show `git checkout <file>`. Prefer `git restore <file>`.
-
-### Commit + compare
-
-```bash
-git commit -m "playbook"
-git log --oneline
-git diff <commit-id1>..<commit-id2>
-```
-
 ### Key takeaway
 
 Git replaces fragile manual backups, enables safe recovery via remotes, supports rollbacks at each stage, and SSH improves security + automation.
@@ -356,8 +345,8 @@ Git replaces fragile manual backups, enables safe recovery via remotes, supports
 
 ## References
 
-- https://about.gitlab.com/images/press/git-cheat-sheet.pdf
-- https://wac-cdn.atlassian.com/dam/jcr:e7e22f25-bba2-4ef1-a197-53f46b6df4a5/SWTM-2088_Atlassian-Git-Cheatsheet.pdf?cdnVersion=3145
+- <https://about.gitlab.com/images/press/git-cheat-sheet.pdf>
+- <https://wac-cdn.atlassian.com/dam/jcr:e7e22f25-bba2-4ef1-a197-53f46b6df4a5/SWTM-2088_Atlassian-Git-Cheatsheet.pdf?cdnVersion=3145>
 
 ---
 
