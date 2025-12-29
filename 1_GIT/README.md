@@ -47,6 +47,9 @@ Git is a core DevOps tool because it helps you collaborate with developers, trac
 ![vcs](vcs5.png)
 ![vcs](vcs6.png)
 ![vcs](vcs7.png)
+
+## Distributed Version Control Systems
+
 ![vcs](vcs8.png)
 ![vcs](vcs9.png)
 ![vcs](vcs10.png)
@@ -59,6 +62,18 @@ Git is a core DevOps tool because it helps you collaborate with developers, trac
 ![vcs](vcs11.png)
 ![vcs](vcs12.png)
 
+### Manual backups vs Git
+
+- Manual backups:
+
+  ```bash
+  cp file.sh file.sh.bak
+  tar czvf remotexecmulti.Backup.tar.gz *.bakup
+  rm -rf *.bakup
+  ```
+
+Manual backups are error-prone and hard to manage at scale. Git makes changes traceable and recoverable.
+
 ---
 
 ## Installation and initial setup
@@ -69,19 +84,13 @@ Git is a core DevOps tool because it helps you collaborate with developers, trac
 - **macOS**: `brew install git`
 - **Linux**: install via your distro package manager (APT/YUM/SNAP, etc.)
 
+---
+
+## Local workflow (working tree -> staging -> commit)
+
+![versioning](v7.png)
+
 ![versioning](v1.png)
-![versioning](v2.png)
-![versioning](v3.png)
-![versioning](v4.png)
-![versioning](v5.png)
-![versioning](v6.png)
-
-### Configure identity (one-time)
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your-email@example.com"
-```
 
 ### Create a new repository
 
@@ -91,11 +100,8 @@ git init
 
 This creates the `.git/` directory which stores your history and metadata.
 
----
-
-## Local workflow (working tree -> staging -> commit)
-
-![versioning](v7.png)
+![versioning](v2.png)
+![versioning](v3.png)
 
 ### Everyday commands
 
@@ -104,6 +110,41 @@ git status
 git add .
 git commit -m "Describe your change"
 ```
+
+![versioning](v4.png)
+
+### Configure identity (one-time)
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+```
+
+![versioning](v5.png)
+![versioning](v6.png)
+
+---
+
+## Remote integration (GitHub)
+
+![versioning](v8.png)
+
+### Link local repo to a remote
+
+```bash
+git remote add origin <URL>
+git branch -M main
+git push -u origin main
+```
+
+![versioning](v9.png)
+![versioning](v10.png)
+![versioning](v11.png)
+![versioning](v12.png)
+
+![versioning](v13.png)
+![versioning](v14.png)
+![versioning](v15.png)
 
 ### Inspect changes
 
@@ -116,32 +157,13 @@ git commit -m "Describe your change"
 - `git log --oneline` (compact)
 - `git show <commit-id>` (details for one commit)
 
----
-
-## Remote integration (GitHub)
-
-### Link local repo to a remote
-
-```bash
-git remote add origin <URL>
-git branch -M main
-git push -u origin main
-```
+![versioning](v16.png)
 
 ### Sync
 
 - Push local commits: `git push origin main`
 - Pull remote updates: `git pull`
 
-![versioning](v8.png)
-![versioning](v9.png)
-![versioning](v10.png)
-![versioning](v11.png)
-![versioning](v12.png)
-![versioning](v13.png)
-![versioning](v14.png)
-![versioning](v15.png)
-![versioning](v16.png)
 ![versioning](v17.png)
 
 ---
@@ -153,6 +175,9 @@ Branches let multiple people work in parallel without breaking the stable branch
 ### Branch basics
 
 - Create a branch: `git branch <branch-name>`
+
+![branches](B1.png)
+
 - Create + switch (older): `git checkout -b <branch-name>`
 - Switch (recommended): `git switch <branch-name>`
 - List branches: `git branch -a`
@@ -181,7 +206,6 @@ Use `.gitignore` to prevent committing generated files (for example, `*.log`).
 - Rename/move with history: `git mv <old-name> <new-name>`
 - Clone a repo: `git clone <URL>`
 
-![branches](B1.png)
 ![branches](B2.png)
 ![branches](B3.png)
 ![branches](B4.png)
@@ -217,7 +241,11 @@ Git gives you different rollback options depending on where you are in the workf
   git checkout -- <filename>
   ```
 
+![rollback](./R1.png)
+
 - Verify what will be discarded: `git diff`
+
+![rollback](./R2.png)
 
 ### 2) Undo after staging (unstage without losing edits)
 
@@ -227,6 +255,10 @@ git restore --staged <filename>
 
 - Verify staged delta: `git diff --cached`
 
+![rollback](./R3.png)
+![rollback](./R4.png)
+![rollback](./R5.png)
+
 ### 3) Undo after committing
 
 - **Revert (safe, keeps history)**:
@@ -235,11 +267,16 @@ git restore --staged <filename>
   git revert HEAD
   ```
 
+![rollback](./R6.png)
+![rollback](./R7.png)
+
 - **Reset (destructive, rewrites history)**:
 
   ```bash
   git reset --hard <commit-id>
   ```
+
+![rollback](./R8.png)
 
 Use `reset --hard` only when you understand the impact (especially if commits were already pushed/shared).
 
@@ -248,15 +285,6 @@ Use `reset --hard` only when you understand the impact (especially if commits we
 - `git status`
 - `git log --oneline`
 - `git diff <previous-id>..<current-id>`
-
-![rollback](./R1.png)
-![rollback](./R2.png)
-![rollback](./R3.png)
-![rollback](./R4.png)
-![rollback](./R5.png)
-![rollback](./R6.png)
-![rollback](./R7.png)
-![rollback](./R8.png)
 
 ---
 
@@ -286,6 +314,9 @@ Fallback (if you specifically need RSA):
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
+![ssh](S1.png)
+![ssh](S2.png)
+
 This creates a private key (keep secret) and a public key you can share.
 
 #### Add public key to GitHub
@@ -294,7 +325,12 @@ This creates a private key (keep secret) and a public key you can share.
 cat ~/.ssh/id_ed25519.pub
 ```
 
+![ssh](S3.png)
+
 Then GitHub → Settings → SSH and GPG keys → New SSH key.
+
+![ssh](S4.png)
+![ssh](S5.png)
 
 #### Clone using SSH
 
@@ -304,29 +340,10 @@ git clone git@github.com:username/repository.git
 
 On first connection, verify the fingerprint and type `yes`.
 
-![ssh](S1.png)
-![ssh](S2.png)
-![ssh](S3.png)
-![ssh](S4.png)
-![ssh](S5.png)
 ![ssh](S6.png)
 ![ssh](S7.png)
 
 ---
-
-## Hands-on notes (practice session)
-
-### Manual backups vs Git
-
-- Manual backups:
-
-  ```bash
-  cp file.sh file.sh.bak
-  tar czvf remotexecmulti.Backup.tar.gz *.bakup
-  rm -rf *.bakup
-  ```
-
-Manual backups are error-prone and hard to manage at scale. Git makes changes traceable and recoverable.
 
 ### Recovery via clone
 
@@ -343,39 +360,37 @@ Git replaces fragile manual backups, enables safe recovery via remotes, supports
 
 ---
 
+## Cheat Sheet
+
+| **Category**          | **Command**                              | **Example**                                              | **Description**                         |
+| --------------------- | ---------------------------------------- | -------------------------------------------------------- | --------------------------------------- |
+| **Setup**             | `git config --global user.name "Name"`   | `git config --global user.name "John Doe"`               | Set your Git username                   |
+|                       | `git config --global user.email "email"` | `git config --global user.email "john@example.com"`      | Set your Git email                      |
+|                       | `git init <dir>`                         | `git init titanwork`                                     | Initialize a new repo                   |
+| **Status & Tracking** | `git status`                             | `git status`                                             | Check staged/unstaged/untracked files   |
+|                       | `git add <file>`                         | `git add saturn1.py`                                     | Stage a file                            |
+|                       | `git add .`                              | `git add .`                                              | Stage all changes                       |
+|                       | `git commit -m "msg"`                    | `git commit -m "Initial commit"`                         | Commit staged changes                   |
+|                       | `git log`                                | `git log`                                                | View commit history                     |
+|                       | `git log --oneline`                      | `git log --oneline`                                      | Condensed commit history                |
+| **Branching**         | `git branch`                             | `git branch`                                             | List branches                           |
+|                       | `git checkout -b <branch>`               | `git checkout -b sprint1`                                | Create & switch to branch               |
+|                       | `git checkout <branch>`                  | `git checkout main`                                      | Switch branch                           |
+|                       | `git merge <branch>`                     | `git merge sprint1`                                      | Merge branch into current               |
+| **Remote**            | `git clone <url>`                        | `git clone https://github.com/user/repo.git`             | Copy remote repo locally                |
+|                       | `git remote add <name> <url>`            | `git remote add origin https://github.com/user/repo.git` | Link local to remote                    |
+|                       | `git push <remote> <branch>`             | `git push origin main`                                   | Push commits to remote                  |
+|                       | `git pull <remote>`                      | `git pull origin`                                        | Fetch & merge remote changes            |
+| **Undo Changes**      | `git checkout <file>`                    | `git checkout saturn1.py`                                | Discard unstaged changes                |
+|                       | `git reset <file>`                       | `git reset saturn1.py`                                   | Unstage file but keep changes           |
+|                       | `git revert <commit>`                    | `git revert HEAD`                                        | Undo a commit by creating a new one     |
+|                       | `git reset --hard <commit>`              | `git reset --hard a1b2c3d`                               | Reset branch & delete all later changes |
+| **Diff / Inspect**    | `git diff`                               | `git diff`                                               | Show unstaged changes                   |
+|                       | `git diff --cached`                      | `git diff --cached`                                      | Show staged vs last commit              |
+|                       | `git diff HEAD~1..HEAD`                  | `git diff HEAD~1..HEAD`                                  | Show changes in last commit             |
+|                       | `git diff <c1>..<c2>`                    | `git diff a1b2..d4e5`                                    | Show changes between two commits        |
+
 ## References
 
 - <https://about.gitlab.com/images/press/git-cheat-sheet.pdf>
 - <https://wac-cdn.atlassian.com/dam/jcr:e7e22f25-bba2-4ef1-a197-53f46b6df4a5/SWTM-2088_Atlassian-Git-Cheatsheet.pdf?cdnVersion=3145>
-
----
-
-## Git command cheat sheet (quick table)
-
-| **Category**          | **Command**                               | **Example**                                              | **Description**                         |
-| --------------------- | ----------------------------------------- | -------------------------------------------------------- | --------------------------------------- |
-| **Setup**             | `git config --global user.name "Name"`    | `git config --global user.name "John Doe"`               | Set your Git username                   |
-|                       | `git config --global user.email "email"`  | `git config --global user.email "john@example.com"`      | Set your Git email                      |
-|                       | `git init <dir>`                          | `git init titanwork`                                     | Initialize a new repo                   |
-| **Status & Tracking** | `git status`                              | `git status`                                             | Check staged/unstaged/untracked files   |
-|                       | `git add <file>`                          | `git add saturn1.py`                                     | Stage a file                            |
-|                       | `git add .`                               | `git add .`                                              | Stage all changes                       |
-|                       | `git commit -m "msg"`                     | `git commit -m "Initial commit"`                         | Commit staged changes                   |
-|                       | `git log`                                 | `git log`                                                | View commit history                     |
-|                       | `git log --oneline`                       | `git log --oneline`                                      | Condensed commit history                |
-| **Branching**         | `git branch`                              | `git branch`                                             | List branches                           |
-|                       | `git checkout -b <branch>`                | `git checkout -b sprint1`                                | Create & switch (older)                 |
-|                       | `git switch <branch>`                     | `git switch main`                                        | Switch branch (recommended)             |
-|                       | `git merge <branch>`                      | `git merge sprint1`                                      | Merge branch into current               |
-| **Remote**            | `git clone <url>`                         | `git clone https://github.com/user/repo.git`             | Copy remote repo locally                |
-|                       | `git remote add <name> <url>`             | `git remote add origin https://github.com/user/repo.git` | Link local to remote                    |
-|                       | `git push <remote> <branch>`              | `git push origin main`                                   | Push commits to remote                  |
-|                       | `git pull`                                | `git pull`                                               | Fetch & merge remote changes            |
-| **Undo Changes**      | `git restore <file>`                      | `git restore saturn1.py`                                 | Discard unstaged changes                |
-|                       | `git restore --staged <file>`             | `git restore --staged saturn1.py`                        | Unstage file but keep edits             |
-|                       | `git revert <commit>`                     | `git revert HEAD`                                        | Undo a commit by creating a new one     |
-|                       | `git reset --hard <commit>`               | `git reset --hard a1b2c3d`                               | Reset branch & delete later commits     |
-| **Diff / Inspect**    | `git diff`                                | `git diff`                                               | Show unstaged changes                   |
-|                       | `git diff --cached`                       | `git diff --cached`                                      | Show staged vs last commit              |
-|                       | `git diff HEAD~1..HEAD`                   | `git diff HEAD~1..HEAD`                                  | Show changes in last commit             |
-|                       | `git diff <c1>..<c2>`                     | `git diff a1b2..d4e5`                                    | Show changes between two commits        |
